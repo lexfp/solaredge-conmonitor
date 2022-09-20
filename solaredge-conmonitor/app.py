@@ -7,7 +7,7 @@ import boto3
 
 def lambda_handler(event, context):
 
-    response = requests.get("https://monitoringapi.solaredge.com/SITE_ID/257570/overview.json?api_key=REPLACE_WITH_SOLAREDGE_API_KEY")
+    response = requests.get("https://monitoringapi.solaredge.com/site/SITE_ID/overview.json?api_key=REPLACE_WITH_SOLAREDGE_API_KEY")
 
     message=""
     try:
