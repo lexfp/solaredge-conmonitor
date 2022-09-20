@@ -1,0 +1,35 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  solaredge-conmonitor
+
+  Sample SAM Template for solaredge-conmonitor
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 10
+    Environment:
+      Variables:
+        TZ: US/Eastern
+
+Resources:
+  SolaredgeConnMonitorFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: solaredge-conmonitor/
+      Role: arn:aws:iam::464277983547:role/LambdaSESRole
+      Handler: app.lambda_handler
+      Runtime: python3.8
+      Architectures:
+        - x86_64
+      Events:
+        CloudWatchEvent:
+          Type: Schedule
+          Properties:
+            Schedule: rate(3 hours)
+
+Outputs:
+  SolaredgeConnMonitorFunction:
+    Description: "Solaredge connection monitor Lambda Function ARN"
+    Value: !GetAtt SolaredgeConnMonitorFunction.Arn

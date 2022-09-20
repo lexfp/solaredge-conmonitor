@@ -1,0 +1,12 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "solaredge-conmonitor"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1ij7f59w5wuh1"
+s3_prefix = "solaredge-conmonitor"
+region = "us-east-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+disable_rollback = true
+image_repositories = []
